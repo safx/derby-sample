@@ -1,3 +1,7 @@
+<Scripts:>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
 <Body:>
   <div class="row">
     <form class="span3" x-bind="submit: list.add">
@@ -16,22 +20,16 @@
       </div>
     </form>
     <div class="span8 offset1">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Note</th>
-          </tr>
-        </thead>
-        <tbody>
-          {#each _page.items as :item}
-            <tr>
-              <td>{{:item.name}}</td>
-              <td>{{:item.note}}</td>
-              <td><button class="btn" x-bind="click: list.remove">Remove</button></td>
-            </tr>
-          {/}
-        </tbody>
-      </table>
+        <div class="span8 offset1">
+          <div class="items-div"> {#each _page.items}<app:item>{/} </div>
+        </div>
     </div>
+  </div>
+
+
+<item:>
+  <div style="left:{.pos.x}px; top:{.pos.y}px" x-bind="mousedown: list.drag">
+    <input value="{.name}" />
+    <button class="btn" x-bind="click: list.remove">x</button>
+    <textarea>{.note}</textarea>
   </div>
